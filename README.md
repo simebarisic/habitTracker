@@ -2,8 +2,6 @@
 
 Full-stack habit tracker: Spring Boot (Java 21) + React (Vite) + PostgreSQL, containerized with Docker.
 
-Migrirano iz Notion baze "Habits" — uključuje 646 dana povijesnih podataka (17.11.2024 – 27.8.2026).
-
 ## Pokretanje
 
 Preduvjet: Docker i Docker Compose.
