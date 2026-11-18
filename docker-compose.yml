@@ -10,7 +10,7 @@ services:
     environment:
       POSTGRES_DB: ${DB_NAME:-habit_tracker}
       POSTGRES_USER: ${DB_USER:-habit_tracker}
-      POSTGRES_PASSWORD: ${DB_PASSWORD:-habit_tracker}
+      POSTGRES_PASSWORD: ${DB_PASSWORD:?Postavi DB_PASSWORD u .env (vidi .env.example)}
     ports:
       - "127.0.0.1:${DB_PORT:-5430}:5432"
     volumes:
@@ -35,8 +35,8 @@ services:
       DB_PORT: 5432
       DB_NAME: ${DB_NAME:-habit_tracker}
       DB_USER: ${DB_USER:-habit_tracker}
-      DB_PASSWORD: ${DB_PASSWORD:-habit_tracker}
-      JWT_SECRET: ${JWT_SECRET:-change-this-super-secret-key-in-production-please-32bytes-min}
+      DB_PASSWORD: ${DB_PASSWORD:?Postavi DB_PASSWORD u .env (vidi .env.example)}
+      JWT_SECRET: ${JWT_SECRET:?Postavi JWT_SECRET u .env (openssl rand -hex 32)}
       JWT_EXPIRATION_MS: ${JWT_EXPIRATION_MS:-86400000}
       CORS_ALLOWED_ORIGINS: ${CORS_ALLOWED_ORIGINS:-http://localhost:5173,http://localhost:3030}
     ports:
