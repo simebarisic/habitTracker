@@ -11,9 +11,9 @@ cp .env.example .env    # po potrebi izmijeni vrijednosti (JWT_SECRET obavezno u
 docker compose up --build
 ```
 
-- Frontend: http://localhost:3000
-- Backend API: http://localhost:8080/api
-- Postgres: localhost:5432
+- Frontend: http://localhost:3030
+- Backend API: http://localhost:8030/api (samo s ovog računala)
+- Postgres: localhost:5430 (samo s ovog računala)
 
 Prvo pokretanje automatski kreira shemu (Flyway migracije) i uvozi povijesne podatke iz Notiona.
 
@@ -49,8 +49,8 @@ Baza: PostgreSQL, sheme upravljane Flyway migracijama (`backend/src/main/resourc
 **Backend:**
 ```bash
 cd backend
-# pokreni lokalni Postgres ili prilagodi application.yml
-mvn spring-boot:run
+# baza iz docker compose (docker compose up -d postgres) sluša na 127.0.0.1:5430
+DB_PORT=5430 mvn spring-boot:run
 ```
 
 **Frontend:**

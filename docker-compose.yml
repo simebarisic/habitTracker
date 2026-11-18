@@ -1,3 +1,6 @@
+# Shema portova za sve lokalne Docker aplikacije: web 30xx, API 80xx, baza 54xx (xx = broj aplikacije).
+# habit-tracker = 30: web 3030 (i s kućne mreže), API 127.0.0.1:8030, baza 127.0.0.1:5430.
+
 services:
   postgres:
     image: postgres:16-alpine
@@ -8,7 +11,7 @@ services:
       POSTGRES_USER: ${DB_USER:-habit_tracker}
       POSTGRES_PASSWORD: ${DB_PASSWORD:-habit_tracker}
     ports:
-      - "${DB_PORT:-5432}:5432"
+      - "127.0.0.1:${DB_PORT:-5430}:5432"
     volumes:
       - habit_tracker_pgdata:/var/lib/postgresql/data
     healthcheck:
@@ -33,9 +36,9 @@ services:
       DB_PASSWORD: ${DB_PASSWORD:-habit_tracker}
       JWT_SECRET: ${JWT_SECRET:-change-this-super-secret-key-in-production-please-32bytes-min}
       JWT_EXPIRATION_MS: ${JWT_EXPIRATION_MS:-86400000}
-      CORS_ALLOWED_ORIGINS: ${CORS_ALLOWED_ORIGINS:-http://localhost:5173,http://localhost:3000}
+      CORS_ALLOWED_ORIGINS: ${CORS_ALLOWED_ORIGINS:-http://localhost:5173,http://localhost:3030}
     ports:
-      - "${BACKEND_PORT:-8080}:8080"
+      - "127.0.0.1:${BACKEND_PORT:-8030}:8080"
 
   frontend:
     build:
@@ -45,7 +48,7 @@ services:
     depends_on:
       - backend
     ports:
-      - "${FRONTEND_PORT:-3000}:80"
+      - "${FRONTEND_PORT:-3030}:80"
 
 volumes:
   habit_tracker_pgdata:
